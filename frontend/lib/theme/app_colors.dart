@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 
 class LightThemeColors {
-  // static const primaryColor = Color(0xFF5E5E5E);
-  static const surfaceColor = Color(0xFF363636);
+  // Primary colors for plastic injection molding company
+  static const primaryColor = Color(0xFF2C5282);
+  static const primaryDark = Color(0xFF1E3A5F);
+  static const primaryLight = Color(0xFF4A7BA7);
+  
+  // Surface colors
+  static const surfaceColor = Colors.white;
+  static const surfaceLight = Color(0xFFF8F9FA);
   static const onSurfaceColor = Colors.white;
-  static const primaryTextColor = Color.fromARGB(255, 65, 65, 65);
-  static const secondaryTextColor = Color(0xFF07326A);
+  
+  // Text colors
+  static const primaryTextColor = Color(0xFF1E3A5F);
+  static const secondaryTextColor = Color(0xFF2C5282);
+  static const textLight = Color(0xFF6B7280);
+  
+  // Accent colors
+  static const accentColor = Color(0xFF4A7BA7);
+  static const successColor = Color(0xFF10B981);
+  static const errorColor = Color(0xFFEF4444);
 }
 
 class DarkThemeColors {

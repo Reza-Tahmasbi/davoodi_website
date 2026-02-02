@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc_app_template/generated/assets.gen.dart';
-// import 'package:flutter_bloc_app_template/theme/app_colors.dart';
 
 class AppTextTheme {
-  static const String defaultFont = 'IRANSansXFaNum';
-  static TextTheme get lightTextTheme => const TextTheme(
+  // Change this to your font family name (must match pubspec.yaml)
+  // Options: 'Vazir', 'IRANSans', 'Shabnam', etc.
+  static const String defaultFont = 'Vazir';
+  
+  // Helper method to get TextStyle with default font
+  static TextStyle getTextStyle({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? height,
+    double? letterSpacing,
+  }) {
+    return TextStyle(
+      fontFamily: defaultFont,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: color,
+      height: height,
+      letterSpacing: letterSpacing,
+    );
+  }
+  
+  static TextTheme get lightTextTheme => TextTheme(
         displayLarge: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
@@ -44,7 +63,6 @@ class AppTextTheme {
         titleSmall: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          // color: LightThemeColors.greyTextColor,
           fontFamily: defaultFont,
         ),
         bodyLarge: TextStyle(

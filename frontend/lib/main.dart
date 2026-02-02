@@ -1,46 +1,27 @@
-import 'package:davoodi/widgets/header.dart';
+import 'package:davoodi/pages/home_page.dart';
+import 'package:davoodi/theme/text_theme.dart';
 import 'package:davoodi/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final GoRouter _router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => _PageWrapper(child: HomePage()),
+    ),
+  ],
+);
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      locale: const Locale("fa"),
-      supportedLocales: const [Locale("fa"), Locale("en")],
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'تولیدی پلاستیک'),
-    );
-  }
-}
+class _PageWrapper extends StatelessWidget {
+  final Widget child;
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+  const _PageWrapper({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +29,48 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: NavigationBarWidget(),
       endDrawer: isMobile ? NavigationDrawerWidget() : null,
-      body: HeaderWidget(imageUrl: 'assets/imgs/header_gs.png'),
+      body: child,
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      locale: const Locale("fa"),
+      supportedLocales: const [Locale("fa"), Locale("en")],
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      title: 'تزریق پلاستیک داوودی',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2C5282),
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
+        // Apply custom Persian font to all text
+        fontFamily: AppTextTheme.defaultFont,
+        textTheme: AppTextTheme.lightTextTheme,
+        // Apply font to other text styles
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: AppTextTheme.defaultFont,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        buttonTheme: const ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
+        ),
+      ),
+      routerConfig: _router,
     );
   }
 }
